@@ -39,6 +39,7 @@ int get_value()
 	char aux[50];
 	int a;
 	scanf("%c", aux);
+	printf("%s\n", aux);
 	for(a = 0; aux[a] != '\0'; a++);
 	if(aux[0] == aux[a-1] || a== 1) return 1;
 	return 0;
