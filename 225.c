@@ -3,7 +3,7 @@
 
 int main()
 {
-	int size, A[100001];
+	int size, A[100001], k;
 	int a, b, c, par = 0;
 	
 	scanf("%d", &size);
@@ -13,10 +13,28 @@ int main()
 
 	for(a = 1; a <= size; a++) scanf("%d", &elements[a]);
 
-	for(a = size; a > 0; a--)
+	k = 0;
+	for(a = size-1; a > 0; a--)
 	{
-		for(b = 0; b < elements[a]; b++) par += A[b];
-		A[elements[a]]++;
+		A[elements[a+1]]++;
+
+		if(elements[a] > elements[a+1])
+		{
+			for(b = elements[a+1]; b < elements[a]; b++)
+			{
+				k += A[b];
+			}
+			par += k;
+		}
+		else if(elements[a] < elements[a+1])
+		{
+			for(b = elements[a+1]-1; b > elements[a]; b--)
+			{
+				k -= A[b];
+			}
+			par += k;
+		}
+		else if(elements[a] == elements[a+1]) par *= 2;
 	}
 	printf("%d\n", par);
 
